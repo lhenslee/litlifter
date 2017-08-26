@@ -1,0 +1,44 @@
+{% block content %}
+<form action="{% url 'makelift' %}" method="post" class="col-sm-2">
+{% csrf_token %}
+  <div style="float:left;poasition:relative;margin-right:40px">
+  Muscle Groups<br>
+  <input type="checkbox" onClick="toggle(this)" /> Toggle All<br/>
+  <input type="checkbox" value="Chest" name="checkbox"> Chest <br>
+  <input type="checkbox" value="Middle Back" name="checkbox"> Middle Back  <br>
+  <input type="checkbox" value="Lower Back" name="checkbox"> Lower Back<br>
+  <input type="checkbox" value="Lats" name="checkbox"> Lats<br>
+  <input type="checkbox" value="Quadriceps" name="checkbox"> Quadriceps<br>
+  <input type="checkbox" value="Hamstrings" name="checkbox"> Hamstrings<br>
+  <input type="checkbox" value="Glutes" name="checkbox"> Glutes<br>
+  <input type="checkbox" value="Calves" name="checkbox"> Calves<br>
+  <input type="checkbox" value="Shoulders" name="checkbox"> Shoulders<br>
+  <input type="checkbox" value="Biceps" name="checkbox"> Biceps<br>
+  <input type="checkbox" value="Triceps" name="checkbox"> Triceps<br>
+  <input type="checkbox" value="Abdominals" name="checkbox"> Abdominals<br>
+  <input type="checkbox" value="Traps" name="checkbox"> Traps</div>
+  <div style="postion:relative">Settings(Optional)<br>
+  <input type="checkbox" value="mixed" name="extype"> Mixed (default)<br>
+  <input type="checkbox" value="soloex" name="extype"> All Solo Exercises<br>
+  <input type="checkbox" value="superset" name="extype"> All Supersets<br>
+  <input type="checkbox" value="burnout" name="extype"> All Burnouts<br>
+  <input type="checkbox" value="cycle" name="extype"> Cycle<br>
+  <input type="checkbox" value="favorite" name="extype"> Our Favorite<br>Equipment<br>
+  <input type="checkbox" value="mixed" name="equipment"> Mixed<br>
+  <input type="checkbox" value="bodyweight" name="equipment"> Body Weight<br>
+  <input type="checkbox" value="weighted" name="equipment"> Weighted (default)<br>Difficulty<br>
+  <input type="checkbox" value="easy" name="difficulty"> Easy<br>
+  <input type="checkbox" value="intermediate" name="difficulty"> Intermediate<br>
+  <input type="checkbox" value="hard" name="difficulty"> Hard<br>
+  <input type="checkbox" value="extreme" name="difficulty"> Extreme<br>
+  <input type="text" name="wnumber" value="" style="width:20px;color:black"> Per Group<br><br>
+  <input type="submit" value="submit" name="Submit" style="color:black"></div><br>
+</form>
+<script language="JavaScript">
+function toggle(source) {
+  checkboxes = document.getElementsByName('checkbox');
+  for(var i=0, n=checkboxes.length;i<n;i++)
+    checkboxes[i].checked = source.checked;
+}
+</script>
+{% endblock %}

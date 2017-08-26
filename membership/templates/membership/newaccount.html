@@ -1,0 +1,32 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+	<form action="{% url 'CreateAccount' %}" method="post" class="col-sm-2">
+{% csrf_token %}
+  <div style="float:left;position:relative;margin-right:40px">
+  Create a Username: <input type="text" name="username" value="" style="width:100px;color:black"><br>{{user_error}}<br>
+  Enter Your Email: <input type="text" name="email" value="" style="width:100px;color:black"><br>{{email_error}}<br>
+  Create a Password: <input type="text" name="password" value="" style="width:100px;color:black">
+  <br>{{password_error}}<br>Difficulty Preference<br>
+  <input type="checkbox" value="easy" name="difficulty"> Easy<br>
+  <input type="checkbox" value="intermediate" name="difficulty"> Intermediate<br>
+  <input type="checkbox" value="hard" name="difficulty"> Hard<br>
+  <input type="checkbox" value="extreme" name="difficulty"> Extreme<br><br>
+  Available equipment<br>
+  <input type="checkbox" value="Barbell" name="equipment"> Barbell<br>
+  <input type="checkbox" value="Dumbbell" name="equipment"> Dumbell<br>
+  <input type="checkbox" value="Exercise Ball" name="equipment"> Exercise Ball<br>
+  <input type="checkbox" value="Cable" name="equipment"> Cable<br>
+  <input type="checkbox" value="E-Z Curl Bar" name="equipment"> E-Z Curl Bar<br>
+  <input type="checkbox" value="Machine" name="equipment"> Machine<br>
+  <input type="checkbox" value="Medicine Ball" name="equipment"> Medicine Ball<br>
+  <input type="checkbox" value="None" name="equipment"> None<br>
+  <input type="checkbox" value="Other" name="equipment"> Other<br>
+  <input type="checkbox" value="Body Only" name="equipment"> Body Only<br>
+  <input type="checkbox" value="Kettlebells" name="equipment"> Kettlebells<br>
+  <input type="checkbox" value="Bands" name="equipment"> Bands<br><br>
+  <input type="submit" value="Create User" name="Submit" style="color:black"><br></div><br><br>
+  You can always come back and change these through the login page!<br><br>
+  Also, our Chaos Builder selection will allow you to override these settings for a single workout.
+</form>
+{% endblock %}

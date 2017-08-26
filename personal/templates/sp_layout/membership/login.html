@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" class="layout-signup ">
+
+<head>
+
+    <!--[if !IE]> -->
+    <script src="//www.scdn.co/build/js/jquery-2-55dbf677db.1.3.min.js"></script>
+    <!-- <![endif]-->
+
+    <!--[if gte IE 9]>
+  <script src="//www.scdn.co/build/js/jquery-2-55dbf677db.1.3.min.js"></script>
+<![endif]-->
+
+    <!--[if lt IE 9]>
+  <script src="//www.scdn.co/build/js/jquery-1-71306af3b2.11.0.min.js"></script>
+<![endif]-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Sign up - Lit Lifter</title>
+
+
+    <link rel="stylesheet" href="//www.scdn.co/build/css/reboot-02b334b652.css" />
+    <link href="https://d2d1dxiu3v1f2i.cloudfront.net/404e99e/css/index.css" media="screen" rel="stylesheet">
+
+    <script src="//www.scdn.co/build/js/modernizr-bc8113e41c.js"></script>
+
+</head>
+
+<body class="page-signup  m-us l-en page-signup is-loggedout  reboot ">
+
+    <div class="wrap">
+
+
+
+
+        <div class="sign-up">
+            <div class="l-signup-header">
+                <div class="container">
+                    <div class="l-box-content">
+                        <a class="spotify-logo" href="/us/"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="l-signup-body">
+                <div class="container">
+                    <div class="l-box-content">
+                        <section class="register">
+                            <div class="content">
+                                <h2 class="center hdr-l"><br>Sign in with your username or email address</h2>
+                                <form method="post" action="">
+                                    {% csrf_token %}
+
+                                    <fieldset>
+                                        <ul>
+                                            <li>
+                                                <label class="sr-only required" for="register-username">Username or Email</label>
+                                                <input type="text" name="username" required="required" autocapitalize="off" autocorrect="off" autocomplete="on" maxlength="30" placeholder="Username or Email" required="required" />
+                                            </li>
+											<li><h6 style="color:red">{{invalid_user}}</h6></li>
+                                            <li>
+                                                <label class="sr-only required" for="register-password">Password</label>
+                                                <input type="password" name="password" required="required" autocomplete="on" maxlength="100" placeholder="Password" required="required" />
+											</li>
+											<li><h6 style="color:red">{{invalid_password}}</h6></li>
+
+                                        </ul>
+                                    </fieldset>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="checkbox"><label><input type="checkbox" name="remember">Remember Me<span class="control-indicator"></span></label></div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6"><button type="submit" class="btn btn-sm btn-block btn-green" value="Log In" name="Submit">Log In</button></div>
+                            </div>
+                            <div class="row row-hint">
+                                <div class="col-xs-12">
+                                    <div class="divider"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+            </section>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <!-- This page was rendered using Twig -->
+
+</html>

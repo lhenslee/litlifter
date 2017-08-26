@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chaos Builder - Lit Lifter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="{% static 'handmade/stylesheet.css' %}" type="text/css">
+</head>
+
+<div id="container">
+    <div id="header">
+        <a href="/" class="headerlogo"><img src="{% static 'handmade/sideways_light_logo.png' %}" class="headerlogo"></a>
+        <div id="menu-icon">
+            <ul class="navbar">
+                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
+                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
+                <li class="navbar"><a href="/membership/create" class="navbar">{{signup}}</a></li>
+                <li class="navbar"><a href="/membership/profile" class="navbar">{{profile}}</a></li>
+            </ul>
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
+                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
+                <li class="navbar"><a href="/membership/create" class="navbar">{{signup}}</a></li>
+                <li class="navbar"><a href="/membership/profile" class="navbar">{{profile}}</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="socialnav">
+        <ul class="socialnav">
+            <li class="socialnav"><a href="#"><img src="{% static 'handmade/linkedin.gif' %}" id="linkedin" class="socialnav"></a></li>
+            <li class="socialnav"><a href="#"><img src="{% static 'handmade/twitter.png' %}" id="twitter" class="socialnav"></a></li>
+            <li class="socialnav"><a href="#"><img src="{% static 'handmade/facebook.png' %}" id="facebook" class="socialnav"></a></li>
+        </ul>
+    </div>

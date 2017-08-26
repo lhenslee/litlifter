@@ -1,0 +1,16 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+  <form action="{% url 'login' %}" method="post" class="col-sm-2">
+{% csrf_token %}
+  <div style="float:left;position:relative;margin-right:40px"><br>
+  Username: <input type="text" name="username" value="" style="width:100px;color:black"><br>{{invalid_user}}<br><br>
+  Password: <input type="text" name="password" value="" style="width:100px;color:black"><br>{{invalid_password}}<br><br>
+  <input type="submit" value="Login" name="Submit" style="color:black"></div>
+</form>
+  <form action="{% url 'CreateAccount' %}" method="post" class="col-sm-2">
+{% csrf_token %}
+  <div style="float:left;position:relative;margin-right:40px"><br>
+  <input type="submit" value="Create New Account" name="Submit" style="color:black"></div>
+</form>
+{% endblock %}

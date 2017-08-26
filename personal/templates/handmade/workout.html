@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chaos Builder - Lit Lifter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="{% static 'handmade/stylesheet.css' %}" type="text/css">
+</head>
+
+<div id="container">
+    <div id="header">
+        <a href="/" class="headerlogo"><img src="{% static 'handmade/sideways_light_logo.png' %}" class="headerlogo"></a>
+        <div id="menu-icon">
+            <ul class="navbar">
+                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
+                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
+                <li class="navbar"><a href="/membership/create" class="navbar">{{signup}}</a></li>
+                <li class="navbar"><a href="/membership/profile" class="navbar">{{profile}}</a></li>
+            </ul>
+        </div>
+        <nav>
+            <ul class="navbar">
+                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
+                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
+                <li class="navbar"><a href="/membership/create" class="navbar">{{signup}}</a></li>
+                <li class="navbar"><a href="/membership/profile" class="navbar">{{profile}}</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="socialnav">
+        <ul class="socialnav">
+            <li class="socialnav"><a href="#"><img src="{% static 'handmade/linkedin.gif' %}" id="linkedin" class="socialnav"></a></li>
+            <li class="socialnav"><a href="#"><img src="{% static 'handmade/twitter.png' %}" id="twitter" class="socialnav"></a></li>
+            <li class="socialnav"><a href="#"><img src="{% static 'handmade/facebook.png' %}" id="facebook" class="socialnav"></a></li>
+        </ul>
+    </div>
+    <div id="body-background"></div>
+    <div id="body">
+        <div class="workout-settings">
+            <form class="workout-settings" method="post">
+            {% csrf_token %}
+                <ul class="workout-settings">
+                    <li>Musclegroups</li><br>
+                    <li><input type="checkbox" value="Chest" name="musclegroups"> Chest ({{chest}})</li>
+                    <li><input type="checkbox" value="Middle Back" name="musclegroups"> Middle Back ({{middleback}})</li>
+                    <li><input type="checkbox" value="Lower Back" name="musclegroups"> Lower Back ({{lowerback}})</li>
+                    <li><input type="checkbox" value="Lats" name="musclegroups"> Lats ({{lats}})</li>
+                    <li><input type="checkbox" value="Biceps" name="musclegroups"> Biceps ({{biceps}})</li>
+                    <li><input type="checkbox" value="Triceps" name="musclegroups"> Triceps ({{triceps}})</li>
+                    <li><input type="checkbox" value="Abdominals" name="musclegroups"> Abdominals ({{abdominals}})</li>
+                    <li><input type="checkbox" value="Shoulders" name="musclegroups"> Shoulders ({{shoulders}})</li>
+                    <li><input type="checkbox" value="Traps" name="musclegroups"> Traps ({{traps}})</li>
+                    <li><input type="checkbox" value="Quadriceps" name="musclegroups"> Quadriceps ({{quadriceps}})</li>
+                    <li><input type="checkbox" value="Hamstrings" name="musclegroups"> Hamstrings ({{hamstrings}})</li>
+                    <li><input type="checkbox" value="Calves" name="musclegroups"> Calves ({{calves}})</li>
+                </ul>
+                <ul class="workout-settings-optional">
+                    <li>Settings: Optional</li><br>
+                    <li><select class="login" name="difficulty">
+                        <option value="intermediate">Difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="hard">Hard</option>
+                        <option value="extreme">Extreme</option>
+                    </select></li>
+                    <li><select class="login" name="extype">
+                        <option value="mixed">Workout Structure</option>
+                        <option value="soloex">All Solo Exercises</option>
+                        <option value="superset">All Supersets</option>
+                        <option value="burnout">All Burnouts</option>
+                        <option value="cycle">Cycle</option>
+                        <option value="favorite">Our Favorite</option>
+                    </select></li>
+                    <li><select class="login" name="equipment">
+                        <option value="weighted">Equipment</option>
+                        <option value="home">Home Gym</option>
+                        <option value="gym">Gym Membership</option>
+                        <option value="none">None</option>
+                    </select></li>
+                    <li><select class="login" name="wnumber">
+                        <option value="2">Workouts per group</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select></li>
+                </ul>
+                <ul class="workout-settings-submissions">
+                    <li><button name="submission" value="submit">Submit</button></li>
+                    <li><button name="submission" value="reshuffle">Re-Shuffle</button></li>
+                    <li><button name="submission" value="email">Email</button></li>
+                </ul>
+            </form>
+        </div>
+        <table class="workout">
+            <tr>
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+            </tr>
+            {% for workout in exercises %}
+            <tr>
+                <td><a class="video-link" target="blank" href="{{workout.link}}">{{workout.exercise}}</a></td>
+                <td>{{workout.sets}}</td>
+                <td>{{workout.reps}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div id="footer">
+        <div class="footerlogo">
+            <a href="#"><img src="{% static 'handmade/sideways_light_logo.png' %}" class="footerlogo"></a>
+        </div>
+        <div id="adminpages">
+            <ul class="adminpages">
+                <li class="resources">Admin Pages</li>
+                <li class="resources"><a href="/admin" target="blank">Admin</a></li>
+                <li class="resources"><a href="#">Database</a></li>
+                <li class="resources"><a href="#">Blog</a></li>
+            </ul>
+            <ul id="jobs">
+                <li class="resources">Jobs</li>
+                <li class="resources"><a href="#">Workout Videos</a></li>
+                <li class="resources"><a href="#">Supplement Suppliers</a></li>
+                <li class="resources"><a href="#">Web Designer</a></li>
+            </ul>
+            <ul id="interests">
+                <li class="resources">Inerests</li>
+                <li class="resources"><a href="#">Stock Analysis</a></li>
+                <li class="resources"><a href="#">Programming</a></li>
+                <li class="resources"><a href="#">Healthy Lifestyle</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</html>

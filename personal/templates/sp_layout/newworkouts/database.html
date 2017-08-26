@@ -1,0 +1,24 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+<table class="dbase">
+    <tr style="background-color:#151B54">
+     <th>Workout Name</th>
+	 <th>Rating</th>
+	 <th>Video Link</th>
+	 <th>Muscle Group</th>
+	 <th>Equipment</th>
+	 <th>Rep Types</th>
+    </tr>
+	{% for workout in object_list %}
+	<tr style="background-color:#151B54">
+		<td>{{workout.title}}</td>
+		<td>{{workout.rating}}</td>
+		<td><a href="{{workout.videolink}}">{{workout.videolink}}</a></td>
+		<td>{{workout.musclegroup}}</td>
+		<td>{{workout.equipment}}</td>
+		<td>{{workout.reps}}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
