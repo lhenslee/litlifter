@@ -111,18 +111,19 @@ def makelift(request):
         else: difficulty = 'intermediate'
         try:
             user = Account.objects.get(username=request.session['member'])
+            print(user)
             difficulty = user.experience
             equip = user.equipment.split(',')
             print(difficulty + ' for ' + user.username)
         except Exception as e: print(e)
         try:
             workout.custom_workout(equip, wtype, groups, int(wnumber), difficulty)
-            print(workout.Exercise.exercises)
+            #print(workout.Exercise.exercises)
             return render(request, 'handmade/workout.html', content)
         except Exception as e: return render(request, 'wbuilder/error.html', content)
-    # elif request.GET['Submit'] == 'Send Email to Myself':
-    #     email = Account.objects.get(username=request.session['member']).email
-    #     management.call_command('send_email', email)
-    #     return render(request, 'handmade/workout.html')
+    elif request.GET['Submit'] == 'Send Email to Myself':
+        email = Account.objects.get(username=request.session['member']).email
+        management.call_command('send_email', email)
+        return render(request, 'handmade/workout.html')
     return render(request, 'handmade/workout.html', content)
 

@@ -74,7 +74,7 @@ def index(request):
         login_page['email'] = user.email
         print(login_page)
         if request.session['member'] != '':
-            return render(request, 'membership/index.html', login_page)
+            return render(request, 'membership/login.html', login_page)
     except Exception as e: print(e)
     if request.method == "POST":
         print(request.POST)

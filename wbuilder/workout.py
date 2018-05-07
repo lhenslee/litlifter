@@ -131,14 +131,14 @@ def get_bodyweights():
     for item in Post_workout.objects.all():
         if item.equipment == 'None' or item.equipment == 'Body Only':
             workout = Workout(item.title, item.rating, item.videolink, item.musclegroup.replace(' ', ''), item.equipment, item.purpose)
-            Workout.workouts.append(workout)
+    Workout.workouts.append(workout)
     build_musclegroup_dict()
 
 def get_mixedweights():
     for item in Post_workout.objects.all():
         if item.equipment != 'Kettlebells':
             workout = Workout(item.title, item.rating, item.videolink, item.musclegroup.replace(' ', ''), item.equipment, item.purpose)
-            Workout.workouts.append(workout)
+    Workout.workouts.append(workout)
     build_musclegroup_dict()
 
 def get_customweights(equips):
@@ -157,7 +157,8 @@ def make_rand_exercise(musclegroup):
     reptype = workout.purpose
     rep_dict = obj_from_list(RepTypes.rep_types, 'purpose', reptype).__dict__
     repnum = random.choice(rep_dict[Workout.difficulty])
-    if len(repnum.split('-')) > 1: setnum = str(len(repnum.split('-')))
+    if len(repnum.split('-')) > 1: 
+        setnum = str(len(repnum.split('-')))
     exlink = workout.videolink
     line = ex, setnum, repnum
     Exercise.exercises.append(Exercise(workout.title, workout.videolink, setnum, repnum))
@@ -173,7 +174,8 @@ def make_rand_superset(musclegroup):
     reptype = workout.purpose
     rep_dict = obj_from_list(RepTypes.rep_types, 'purpose', reptype).__dict__
     repnum = random.choice(rep_dict[Workout.difficulty])
-    if len(repnum.split('-')) > 1: repnum = random.choice(rep_dict[Workout.difficulty])
+    if len(repnum.split('-')) > 1: 
+        repnum = random.choice(rep_dict[Workout.difficulty])
     exlink = workout.videolink
     line = ex, 'Superset', repnum
     Exercise.exercises.append(Exercise(workout.title, workout.videolink, 'Superset', repnum))
@@ -189,7 +191,8 @@ def make_rand_burnout(musclegroup):
     reptype = workout.purpose
     rep_dict = obj_from_list(RepTypes.rep_types, 'purpose', reptype).__dict__
     repnum = random.choice(rep_dict[Workout.difficulty])
-    if len(repnum.split('-')) > 1: setnum = str(len(repnum.split('-')))
+    if len(repnum.split('-')) > 1: 
+        setnum = str(len(repnum.split('-')))
     link = workout.videolink
     line = ex, 'Burnout: ' + setnum, repnum
     Exercise.exercises.append(Exercise(workout.title, workout.videolink, 'Burnout ' + setnum, repnum))
@@ -207,6 +210,7 @@ def file_setup(filename):
 
 def mixed_routine(filename, groups, pergroup):
     liftgroup = []
+    print('mixed routine')
     ltypes = [make_rand_exercise, make_rand_exercise, make_rand_exercise, make_rand_exercise, 
               make_rand_exercise, make_rand_superset, make_rand_superset,
               make_rand_burnout]
@@ -285,20 +289,31 @@ def favorite_routine(filename, groups):
     f.close()
 
 def custom_workout(equip, wtype, groups, pergroup, difficulty):
-    filename = 'C:/Users/Lane/Documents/Lift my Python/mysite/wbuilder/templates/wbuilder/workout.html'
+    filename = 'workout.html'
     file_setup(filename)
+    print('file set up')
     Workout.difficulty = difficulty
     rep_types()
     set_types()
-    if equip == 'weighted': get_weights()
-    elif equip == 'bodyweight': get_bodyweights()
-    else: get_customweights(equip)
-    if wtype == 'soloex': solos_routine(filename, groups, pergroup)
-    elif wtype == 'superset': superset_routine(filename, groups, pergroup)
-    elif wtype == 'burnout': burnout_routine(filename, groups, pergroup)
-    elif wtype == 'cycle': cycle_routine(filename, groups, pergroup)
-    elif wtype == 'favorite': favorite_routine(filename, groups)
-    else: mixed_routine(filename, groups, pergroup)
+    if equip == 'weighted': 
+        print('weighted')
+        get_weights()
+    elif equip == 'bodyweight':  
+        get_bodyweights()
+    else: 
+        get_customweights(equip)
+    if wtype == 'soloex': 
+        solos_routine(filename, groups, pergroup)
+    elif wtype == 'superset': 
+        superset_routine(filename, groups, pergroup)
+    elif wtype == 'burnout': 
+        burnout_routine(filename, groups, pergroup)
+    elif wtype == 'cycle': 
+        cycle_routine(filename, groups, pergroup)
+    elif wtype == 'favorite': 
+        favorite_routine(filename, groups)
+    else: 
+        mixed_routine(filename, groups, pergroup)
     f = open(filename, 'a')
     f.write('<form><tr><td><input type="submit" value="Send Email to Myself" name="Submit" style="color:black"><td></tr></form>')
     f.write('</table> {% endblock %}')
