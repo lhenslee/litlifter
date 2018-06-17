@@ -14,7 +14,7 @@ body {
 #header {
    background: #2d3142;
     width:100%;
-    height: 48px;
+    height: 58px;
     position: fixed;
     top: 0;
     left: 0;
@@ -51,8 +51,11 @@ a {
     font-weight: normal;
 }
 img.headerlogo {
+    left: 5px;
+    margin-top: 5px;
+    padding-bottom: 5px;
     height: 48px;
-    width: auto;
+    width: 48px;
     position: absolute;
     display: block;
 }
@@ -65,7 +68,7 @@ a.headerlogo {
 nav {
     position: absolute;
     top:0;
-    left: 148px;
+    left: 60px;
     float: left;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
@@ -177,80 +180,6 @@ img.socialnav:hover {
     background: #3b5998;
 }
 
-@media only screen and (max-width: 660px){
-header {
-    position: absolute;
-}
-#menu-icon {
-    display: block;
-    right: 15px;
-    bottom: 5px;
-    position: absolute;
-}
-    nav {
-        position: absolute;
-        right: 0;
-    }
-    ul.navbar {
-        display: none;
-    }
-    #menu-icon ul {
-        width: 100%;
-        position: fixed;
-        display: none;
-        top: 48px;
-        left: 0;
-        background: black;
-        height: 32px;
-        border-top: 3px solid #ffd700;
-    }
-    #menu-icon:hover ul {
-        display: block;
-    }
-    #menu-icon:active ul {
-        display: block;
-    }
-    a.navbar {
-        padding-top: 0;
-    }
-#jobs {
-    display: none;
-}
-#interests{
-    display: none;
-}
-div.socialnav {
-    position: fixed;
-    top: unset;
-    bottom: 0;
-    width: 100%;
-    z-index: 104;
-}
-ul.socialnav {
-    width: 100%;
-    vertical-align: bottom;
-}
-li.socialnav {
-    display: inline-block;
-    width: calc(100%/3);
-    float: left;
-}
-img.socialnav {
-    padding: 10px calc(50% - 12.5px) 5px calc(50% - 12.5px);
-}
-#linkedin {
-    border: none;
-}
-    div.blog {
-        left: 2.5%;
-        right: 0;
-    }
-    img.blog {
-        left: unset;
-        left: 0;
-    }
-}
-
 /* Home Page */
 div.hometitle {
     color: white;
@@ -268,6 +197,7 @@ div.login {
     position: relative;
     margin: 0 auto;
     width: 100%;
+    display: block;
 }
 input.login, select.login {
     border: solid 1px black;
@@ -280,8 +210,8 @@ ul.login {
     padding: 0;
     text-align: center;
 }
-li.login {
-    padding: 7px;
+select.login {
+    display: block;
 }
 #liheader {
     font-size: large;
@@ -421,9 +351,10 @@ p.date {
 /* Chaos Builder */
 div.workout-settings {
     background: rgba(51,92,129,.8);
-    border: solid 3px #FF312E;
-    left: 10%;
-    width: 400px;
+    border: solid 5px #FF312E;
+    width: 70%;
+    height: 200px;
+    transform: translateX(15%);
     position: absolute;
 }
 ul.workout-settings {
@@ -434,26 +365,56 @@ ul.workout-settings {
     padding-bottom: 15px;
     color: white;
 }
-ul.workout-settings-optional {
+.push {
+    margin: 0;
+    position: relative;
+    left: 5%;
+    top: 5px;
+    padding-bottom: 15px;
+    color: white;
+}
+.pull {
+    margin: 0;
     position: absolute;
-    left: 170px;
+    left: 30%;
+    top: 5px;
+    padding-bottom: 15px;
+    color: white;
+}
+.workout-equipment-settings {
+    margin: 0;
+    position: absolute;
+    left: 55%;
+    top: 5px;
+    padding-bottom: 15px;
+    color: white;
+}
+.workout-settings-optional {
+    position: absolute;
+    left: 75%;
     top: 6px;
     margin: 0;
     display: block;
+    color: white;
     padding-bottom: 10px;
+}
+.optional-selector {
+    border: solid 1px black;
+    padding: 1em .75em .6875em;
+    font-size: medium;
+    width: 160px;
+    max-width: 95%;
 }
 table.workout {
     position: absolute;
-    left: calc(10% + 406px);
-    margin: 0;
-    padding:0;
     box-sizing: border-box;
     border-collapse: collapse;
     white-space: normal;
     line-height: normal;
     border-spacing: 0;
-    width: 45%;
-    top: 80px;
+    transform: translateX(10%);
+    width: 80%;
+    top: 300px;
 }
 table.workout td, th {
     border: 2px #000103 solid;
@@ -464,18 +425,51 @@ table.workout td, th {
 table.workout tr:hover {
     background: #FF312E;
 }
-ul.workout-settings-optional li {
+.workout-settings-optional li {
     padding-bottom: 5px;
 }
 ul.workout-settings-submissions {
     width: 210px;
+    left: 3px;
     position: absolute;
-    left: 170px;
-    top: 240px;
 }
 ul.workout-settings-submissions li {
     display: inline-block;
     padding: 0;
+}
+/* Workout page for phone screen */
+@media (max-width: 845px) {
+    .pull {
+        margin: 0;
+        position: absolute;
+        left: 5%;
+        top: 155px;
+        padding-bottom: 15px;
+        color: white;
+    }
+    div.workout-settings {
+        height: 450px;
+    }
+    table.workout {
+        top: 560px;
+    }
+    .workout-settings-submissions {
+        top: 400px;
+    }
+    .workout-settings-optional {
+        position: absolute;
+        left: 10px;
+        top: 380px;
+    }
+    .workout-equipment-settings {
+        top: 340px;
+        left: 10px;
+    }
+    .optional-selector {
+        height: 20px;
+        padding: 2px;
+        font-size: 10px;
+    }
 }
 
 

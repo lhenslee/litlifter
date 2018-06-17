@@ -9,32 +9,7 @@
 </head>
 
 <div id="container">
-    <div id="header">
-        <a href="/" class="headerlogo"><img src="{% static 'handmade/sideways_light_logo.png' %}" class="headerlogo"></a>
-        <div id="menu-icon">
-            <ul class="navbar">
-                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
-                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
-                <li class="navbar"><a href="/membership/create/" class="navbar">Sign Up</a></li>
-                <li class="navbar"><a href="/membership/" class="navbar">Login</a></li>
-            </ul>
-        </div>
-        <nav>
-            <ul class="navbar">
-                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
-                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
-                <li class="navbar"><a href="/membership/create/" class="navbar">Sign Up</a></li>
-                <li class="navbar"><a href="/membership/login" class="navbar">Login</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="socialnav">
-        <ul class="socialnav">
-            <li class="socialnav"><a href="#"><img src="{% static 'handmade/linkedin.gif' %}" id="linkedin" class="socialnav"></a></li>
-            <li class="socialnav"><a href="#"><img src="{% static 'handmade/twitter.png' %}" id="twitter" class="socialnav"></a></li>
-            <li class="socialnav"><a href="#"><img src="{% static 'handmade/facebook.png' %}" id="facebook" class="socialnav"></a></li>
-        </ul>
-    </div>
+    {% include 'handmade/navbar.html' %}
     <div id="body-background"></div>
     <div id="body">
         <div class="hometitle">

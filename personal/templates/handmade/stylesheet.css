@@ -178,15 +178,15 @@ img.socialnav:hover {
 }
 
 @media only screen and (max-width: 660px){
-header {
-    position: absolute;
-}
-#menu-icon {
-    display: block;
-    right: 15px;
-    bottom: 5px;
-    position: absolute;
-}
+    header {
+        position: absolute;
+    }
+    #menu-icon {
+        display: block;
+        right: 15px;
+        bottom: 5px;
+        position: absolute;
+    }
     nav {
         position: absolute;
         right: 0;
@@ -422,12 +422,11 @@ p.date {
 div.workout-settings {
     background: rgba(51,92,129,.8);
     border: solid 3px #FF312E;
-    left: 10%;
-    width: 390px;
+    width: 50%;
     position: absolute;
 }
 ul.workout-settings {
-    margin: 0;
+    margin: auto;
     position: relative;
     left: 25px;
     top: 5px;
@@ -442,16 +441,15 @@ ul.workout-settings-optional {
 }
 table.workout {
     position: absolute;
-    left: calc(10% + 396px);
-    margin: 0;
-    padding:0;
+    margin: auto;
+    padding: 0;
     box-sizing: border-box;
     border-collapse: collapse;
     white-space: normal;
     line-height: normal;
     border-spacing: 0;
-    width: 45%;
-    top: 80px;
+    width: 50%;
+    top: 150px;
 }
 table.workout td, th {
     border: 2px #000103 solid;

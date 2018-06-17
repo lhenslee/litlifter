@@ -20,24 +20,84 @@ content['password_attempt'] = 'Password'
 content['username_attempt'] = 'Username or email'
 content['profile'] = 'Login'
 content['signup'] = 'Sign Up'
+
 try:
-    username = request.session['member']
-    user = Account.objects.get(username=username)
-    content['username'] = user.username
+    user = Account.objects.get(username=request.session['member'])
+    content['profile'] = user.username
     content['email'] = user.email
     content['difficulty'] = user.experience
     content['equipment'] = user.equipment
 except Exception as e: pass
 
+# Create a new account
 def CreateAccount(request):
+    # Initialize content
+    content['username'] = 'Username - 6+'
+    content['email'] = 'Email address'
+    content['email2'] = 'Repeat email address'
+    content['password'] = 'Password - 6+'
+    content['password2'] = 'Repeat Password'
+
+    # Respond to submission
     if request.method == "POST": 
-        print(request.POST)
+        ''' Create a new account if...
+        - Username is more than 5 in length
+        - Both passwords match
+        - Email does not exist
+        - Both emails pass
+        - The user does not exist already
+        If successful go to the home page
+        '''
+        if (len(request.POST['username']) > 5 and request.POST['email']==request.POST['email2']
+            and len(request.POST['password']) > 5 and request.POST['password']==request.POST['password2']
+            and not Account.objects.filter(username=request.POST['username'])):
+            username = request.POST['username']
+            email = request.POST['email']
+            password = request.POST['password']
+            request.session['username'] = username
+            item = Account.objects.create(username=username,email=email,password=password,
+                experience=request.POST['Experience'],equipment=','.join(request.POST.getlist('Equipment')))
+            request.session['member'] = username
+            return HttpResponseRedirect('/')
+
+        # Store attempts into placeholder
+        content['username'] = request.POST['username']
+        content['email'] = request.POST['email']
+        content['email2'] = request.POST['email2']
+        content['password'] = request.POST['password']
+        content['password2'] = request.POST['password2']
+        
+        # User already exists error
+        if (Account.objects.filter(username=request.POST['username'])):
+            content['username'] = 'This username is taken.'
+
+        # Emails do not match
+        if (request.POST['email']!=request.POST['email2']):
+            content['email2'] = 'The emails do not match.'
+
+        # No username present
+        if (not request.POST['username']):
+            content['username'] = 'Please input a username.'
+
+        # Improper email format
+        if ('@' not in request.POST['email']):
+            content['email'] = 'Improper email format.'
+
+        # Passwords do not match
+        if (request.POST['password'] != request.POST['password2']):
+            content['password2'] = 'The passwords do not match.'
+
+        # Password is too short
+        if (len(request.POST['password']) < 6):
+            content['password'] = 'The password must have 6 or more.'
+            content['password2'] = 'Password is too short'
     return render(request, 'handmade/signup.html', content)
 
+# Login page
 def login(request):
+    # Handle login submission
     if request.method == "POST": 
         content['username_attempt'] = 'Username or email'
-        print(request.POST)
         username = request.POST['username']
         password = request.POST['password']
         print(username)
@@ -74,7 +134,7 @@ def index(request):
         login_page['email'] = user.email
         print(login_page)
         if request.session['member'] != '':
-            return render(request, 'membership/login.html', login_page)
+            return render(request, 'handmade/login.html', login_page)
     except Exception as e: print(e)
     if request.method == "POST":
         print(request.POST)
@@ -101,7 +161,22 @@ def index(request):
     return render(request, 'handmade/login.html')
 
 def configure(request):
-    return render(request, 'membership/login.html', content)
+    if request.method == "POST":
+        if request.POST['submission'] == 'Submit':
+            if request.POST['Difficulty'] != 'Select Difficulty':
+                Account.objects.filter(username=request.session['member']).update(
+                    experience=request.POST['Difficulty'])
+            Account.objects.filter(username=request.session['member']).update(
+                equipment=','.join(request.POST.getlist('Equipment')))
+                
+        if request.POST['submission'] == 'Logout':
+            request.session['member'] = ''
+            return HttpResponseRedirect('/')
+    try:
+        content['profile'] = request.session['member'].capitalize()
+        content['signup'] = ''
+    except Exception as e: pass
+    return render(request, 'handmade/account.html', content)
 
 
 

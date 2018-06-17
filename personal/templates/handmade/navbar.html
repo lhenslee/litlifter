@@ -1,0 +1,17 @@
+{% load static %}
+<div id="header">
+    <a href="/" class="headerlogo"><img src="{% static 'Huncho.png' %}" class="headerlogo"></a>
+    <nav>
+        <ul class="navbar">
+            <li class="navbar"><a href="/makeyourworkout" class="navbar">Workout Builder</a></li>
+            {% if profile == 'Login' %}
+                <li class="navbar"><a href="/membership/login" class="navbar">{{profile}}</a></li>
+            {% else %}
+                <li class="navbar"><a href="/membership/profile" class="navbar">{{profile}}</a></li>
+            {% endif %}
+            {% if signup == 'Sign Up' %}
+                <li class="navbar"><a href="/membership/create" class="navbar">{{signup}}</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

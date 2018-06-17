@@ -210,7 +210,6 @@ def file_setup(filename):
 
 def mixed_routine(filename, groups, pergroup):
     liftgroup = []
-    print('mixed routine')
     ltypes = [make_rand_exercise, make_rand_exercise, make_rand_exercise, make_rand_exercise, 
               make_rand_exercise, make_rand_superset, make_rand_superset,
               make_rand_burnout]
@@ -291,7 +290,6 @@ def favorite_routine(filename, groups):
 def custom_workout(equip, wtype, groups, pergroup, difficulty):
     filename = 'workout.html'
     file_setup(filename)
-    print('file set up')
     Workout.difficulty = difficulty
     rep_types()
     set_types()

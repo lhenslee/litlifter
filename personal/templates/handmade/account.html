@@ -1,67 +1,42 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Sign Up - Lit Lifter</title>
+<title>Your Account - {{profile}}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="stylesheet.css">
+<link rel="stylesheet" href="{% static 'handmade/stylesheet.css' %}">
 </head>
 
 <div id="container">
-    <div id="header">
-        <a href="file:///Users/lanehenslee/Documents/html%20designs/home.html#" class="headerlogo"><img src="sideways_light_logo.png" class="headerlogo"></a>
-        <div id="menu-icon">
-            <ul class="navbar">
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/workout.html" class="navbar">Chaos Builder</a></li>
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/blog.html" class="navbar">Blog</a></li>
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/signup.html" class="navbar">Sign Up</a></li>
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/login.html?username=&password=&Submit=Login#" class="navbar">Login</a></li>
-            </ul>
-        </div>
-        <nav>
-            <ul class="navbar">
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/workout.html" class="navbar">Chaos Builder</a></li>
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/blog.html" class="navbar">Blog</a></li>
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/signup.html" class="navbar">Sign Up</a></li>
-                <li class="navbar"><a href="file:///Users/lanehenslee/Documents/html%20designs/login.html?username=&password=&Submit=Login#" class="navbar">Login</a></li>
-            </ul>
-        </nav>
-    </div>
+    {% include 'handmade/navbar.html' %}
     <div id="body-background"></div>
     <div id="signupbody">
         <div class="pagedivider"></div>
         <div class="login">
-            <form class="login">
+            <form class="login" method="post">
+                {% csrf_token %}
                 <ul class="login">
-                    <li class="login selection"><select class="login">
+                    <li class="login selection"><select class="login" name="Difficulty">
                         <option>Select Difficulty</option>
                         <option value="easy">Easy</option>
                         <option value="intermediate">Intermediate</option>
                         <option value="hard">Hard</option>
                         <option value="extreme">Extreme</option>
                     </select></li>
-                    <li class="login selection"><select class="login" id="workout-type" onchange="printSelect('workout-type', '.results', 'specific')">
-                        <option>Select Equipment</option>
-                        <option value="membership">Gym Membership</option>
-                        <option value="home">Home Gym</option>
-                        <option value="none">No Equipment</option>
-                        <option value="specific" id="specific-equipment">More Specific</option>
-                    </select></li>
-                    <li class="results"><ul class="equipment">
-                        <li class="equipment"><input type="checkbox" value="Bands" class="equipment"> Bands</li>
-                        <li class="equipment"><input type="checkbox" value="Barbell" class="equipment"> Barbell</li>
-                        <li class="equipment"><input type="checkbox" value="Body Only" class="equipment"> Body Only</li>
-                        <li class="equipment"><input type="checkbox" value="Cable" class="equipment"> Cable</li>
-                        <li class="equipment"><input type="checkbox" value="Dumbbell" class="equipment"> Dumbbell</li>
-                        <li class="equipment"><input type="checkbox" value="E-Z Curl Bar" class="equipment"> E-Z Curl Bar</li>
-                        <li class="equipment"><input type="checkbox" value="Exercise Ball" class="equipment"> Exercise Ball</li>
-                        <li class="equipment"><input type="checkbox" value="Kettlebells" class="equipment"> Kettlebells</li>
-                        <li class="equipment"><input type="checkbox" value="Machine" class="equipment"> Machine</li>
-                        <li class="equipment"><input type="checkbox" value="Medicine Ball" class="equipment"> Medicine Ball</li>
-                        <li class="equipment"><input type="checkbox" value="None" class="equipment"> None</li>
-                        <li class="equipment"><input type="checkbox" value="Other" class="equipment"> Other</li>
-                    </ul></li>
-                    <li class="login submit-login"><button type="submit" value="Login" name="Submit" class="login">Sign Up</button></li>
+                    <li>Desired Equipment</li>
+                    <li><input type="checkbox" name="Equipment" value="Barbell"> Barbell</li>
+                    <li><input type="checkbox" name="Equipment" value="Dumbbell"> Dumbbell</li>
+                    <li><input type="checkbox" name="Equipment" value="Machine"> Machine</li>
+                    <li><input type="checkbox" name="Equipment" value="Cable"> Cable</li>
+                    <li><input type="checkbox" name="Equipment" value="E-Z Curl Bar"> E-Z Curl Bar</li>
+                    <li><input type="checkbox" name="Equipment" value="Kettlebells"> Kettlebells</li>
+                    <li><input type="checkbox" name="Equipment" value="Medicine Ball"> Medicine Ball</li>
+                    <li><input type="checkbox" name="Equipment" value="Exercise Ball"> Exercise Ball</li>
+                    <li><input type="checkbox" name="Equipment" value="Body Only,None"> Body Only</li>
+                    <li><input type="checkbox" name="Equipment" value="Other"> Other</li>
+                    <li class="login submit-login"><button type="submit" name="submission" value="Submit" class="login">Submit</button></li>
+                    <li class="login submit-login"><button type="submit" name="submission" value="Logout">Logout</button></li>
                 </ul>
             </form>
         </div>

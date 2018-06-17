@@ -3,58 +3,200 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Chaos Builder - Lit Lifter</title>
+<title>Workout Builder - Lit Lifter</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="{% static 'handmade/stylesheet.css' %}" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <div id="container">
-    <div id="header">
-        <a href="/" class="headerlogo"><img src="{% static 'handmade/sideways_light_logo.png' %}" class="headerlogo"></a>
-        <div id="menu-icon">
-            <ul class="navbar">
-                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
-                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
-                <li class="navbar"><a href="/membership/create" class="navbar">{{signup}}</a></li>
-                <li class="navbar"><a href="/membership/profile" class="navbar">{{profile}}</a></li>
-            </ul>
-        </div>
-        <nav>
-            <ul class="navbar">
-                <li class="navbar"><a href="/makeyourworkout" class="navbar">Chaos Builder</a></li>
-                <li class="navbar"><a href="/blog" class="navbar">Blog</a></li>
-                <li class="navbar"><a href="/membership/create" class="navbar">{{signup}}</a></li>
-                <li class="navbar"><a href="/membership/profile" class="navbar">{{profile}}</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="socialnav">
-        <ul class="socialnav">
-            <li class="socialnav"><a href="#"><img src="{% static 'handmade/linkedin.gif' %}" id="linkedin" class="socialnav"></a></li>
-            <li class="socialnav"><a href="#"><img src="{% static 'handmade/twitter.png' %}" id="twitter" class="socialnav"></a></li>
-            <li class="socialnav"><a href="#"><img src="{% static 'handmade/facebook.png' %}" id="facebook" class="socialnav"></a></li>
-        </ul>
-    </div>
+    {% include 'handmade/navbar.html' %}
     <div id="body-background"></div>
     <div id="body">
         <div class="workout-settings">
             <form class="workout-settings" method="post">
             {% csrf_token %}
-                <ul class="workout-settings">
-                    <li>Musclegroups</li><br>
-                    <li><input type="checkbox" value="Chest" name="musclegroups"> Chest ({{chest}})</li>
-                    <li><input type="checkbox" value="Middle Back" name="musclegroups"> Middle Back ({{middleback}})</li>
-                    <li><input type="checkbox" value="Lower Back" name="musclegroups"> Lower Back ({{lowerback}})</li>
-                    <li><input type="checkbox" value="Lats" name="musclegroups"> Lats ({{lats}})</li>
-                    <li><input type="checkbox" value="Biceps" name="musclegroups"> Biceps ({{biceps}})</li>
-                    <li><input type="checkbox" value="Triceps" name="musclegroups"> Triceps ({{triceps}})</li>
-                    <li><input type="checkbox" value="Abdominals" name="musclegroups"> Abdominals ({{abdominals}})</li>
-                    <li><input type="checkbox" value="Shoulders" name="musclegroups"> Shoulders ({{shoulders}})</li>
-                    <li><input type="checkbox" value="Traps" name="musclegroups"> Traps ({{traps}})</li>
-                    <li><input type="checkbox" value="Quadriceps" name="musclegroups"> Quadriceps ({{quadriceps}})</li>
-                    <li><input type="checkbox" value="Hamstrings" name="musclegroups"> Hamstrings ({{hamstrings}})</li>
-                    <li><input type="checkbox" value="Calves" name="musclegroups"> Calves ({{calves}})</li>
+                <ul class="push">
+                    <li>Push Groups</li><br class="break">
+                    <li><input type="checkbox" value="Chest" name="musclegroups"> Chest {{Chest}}</li>
+                    <li><input type="checkbox" value="Triceps" name="musclegroups"> Triceps {{Triceps}}</li>
+                    <li><input type="checkbox" value="Shoulders" name="musclegroups"> Shoulders {{Shoulders}}</li>
+                    <li><input type="checkbox" value="Quadriceps" name="musclegroups"> Quadriceps {{Quadriceps}}</li>
+                    <li><input type="checkbox" value="Glutes" name="musclegroups"> Glutes {{Glutes}}</li>
+                    <li><input type="checkbox" value="Calves" name="musclegroups"> Calves {{Calves}}</li>
                 </ul>
+                <ul class="pull">
+                    <li>Pull Groups</li><br class="break">
+                    <li><input type="checkbox" value="Middle Back" name="musclegroups"> Middle Back {{MiddleBack}}</li>
+                    <li><input type="checkbox" value="Lower Back" name="musclegroups"> Lower Back {{LowerBack}}</li>
+                    <li><input type="checkbox" value="Lats" name="musclegroups"> Lats {{Lats}}</li>
+                    <li><input type="checkbox" value="Biceps" name="musclegroups"> Biceps {{Biceps}}</li>
+                    <li><input type="checkbox" value="Abdominals" name="musclegroups"> Abdominals {{Abdominals}}</li>
+                    <li><input type="checkbox" value="Hamstrings" name="musclegroups"> Hamstrings {{Hamstrings}}</li>
+                    <li><input type="checkbox" value="Traps" name="musclegroups"> Traps {{Traps}}</li>
+
+                </ul>
+                <ul class="workout-settings-optional">
+                    <li id="optional-dropdown"><i id="optional-dropdown-icon" class="fa fa-angle-down" aria-hidden="true"></i> Optional Settings</li><br class="break">
+                    <li><select class="optional-selector" name="difficulty">
+                        <option value="intermediate">Difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="hard">Hard</option>
+                        <option value="extreme">Extreme</option>
+                    </select></li>
+                    <li><select class="optional-selector" name="wnumber">
+                        <option value="2">Workouts/Group</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                    </select></li>
+                </ul>
+                <ul class="workout-equipment-settings">
+                    <li id="equipment-dropdown"><i id="equipment-dropdown-icon" class="fa fa-angle-down" aria-hidden="true"></i> Equipment</li><br class="break">
+                    <li class="equipment-checkbox"><input type="checkbox" value="Barbell" name="equipment"> Barbell</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Dumbbell" name="equipment"> Dumbbell</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Machine" name="equipment"> Machine</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Cable" name="equipment"> Cable</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="E-Z Bar Curl" name="equipment"> E-Z Bar Curl</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Kettlebells" name="equipment"> Kettlebells</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Medicine Ball" name="equipment"> Medicine Ball</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Exercise Ball" name="equipment"> Exercise Ball</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Body Only" name="equipment"> Body Only</li>
+                    <li class="equipment-checkbox"><input type="checkbox" value="Other" name="equipment"> Other</li>
+                </ul>
+                <script>
+                    // Elements for optional settings
+                    const optionalTitle = document.getElementById('optional-dropdown');
+                    const optionalArray = [].slice.call(document.querySelectorAll(".optional-selector"));
+
+                    // Elements for equipment settings
+                    const equipmentTitle = document.getElementById('equipment-dropdown');
+                    const equipmentArray = [].slice.call(document.querySelectorAll(".equipment-checkbox"));
+
+                    // Break elements
+                    const breakArray = [].slice.call(document.querySelectorAll(".break"));
+
+                    // Mouse hover effect
+                    optionalTitle.addEventListener('mouseover', () => {
+                        optionalTitle.style.cursor = 'pointer';
+                    });
+                    equipmentTitle.addEventListener('mouseover', () => {
+                        equipmentTitle.style.cursor = 'pointer';
+                    });
+
+                    // Hide equipment options
+                    equipmentArray.forEach(el => {
+                        el.style.display = 'none';
+                    });
+
+                    // Hide optional options
+                    optionalArray.forEach(el => {
+                        el.style.display = 'none';
+                    });
+
+                    // Dropdown handler for equipment settings
+                    equipmentTitle.addEventListener('click', function() {
+                        equipmentArray.forEach(element => {
+                            if (element.style.display === 'block') {
+                                document.getElementById('equipment-dropdown-icon').classList.add('fa-angle-down');
+                                document.getElementById('equipment-dropdown-icon').classList.remove('fa-angle-right');
+                                element.style.display = 'none';
+                            } else {
+                                document.getElementById('equipment-dropdown-icon').classList.remove('fa-angle-down');
+                                document.getElementById('equipment-dropdown-icon').classList.add('fa-angle-right');
+                                element.style.display = 'block';
+                            }      
+                        });
+                    });
+
+                    // Dropdown handler for optional settings
+                    optionalTitle.addEventListener('click', function() {
+                        optionalArray.forEach(element => {
+                            if (element.style.display === 'block') {
+                                document.getElementById('optional-dropdown-icon').classList.add('fa-angle-down');
+                                document.getElementById('optional-dropdown-icon').classList.remove('fa-angle-right');
+                                element.style.display = 'none';
+                            } else {
+                                document.getElementById('optional-dropdown-icon').classList.remove('fa-angle-down');
+                                document.getElementById('optional-dropdown-icon').classList.add('fa-angle-right');
+                                element.style.display = 'block';
+                            }                        
+                        });
+                    });
+
+                    // For large screens
+                    if (screen.width > 435) {
+                        let tableHeight = 300;
+                        let settingsBox = 200;
+
+                        // Change box height and size
+                        function expandBox(el) {
+                            tableHeight += el;
+                            settingsBox += el;
+                            document.querySelector('table.workout').style.top = tableHeight.toString() + 'px';
+                            document.querySelector('div.workout-settings').style.height = settingsBox.toString() + 'px';
+                        }
+
+                        // Change box size when equipment settings open
+                        equipmentTitle.addEventListener('click', function() {
+                            if (equipmentArray[0].style.display === 'block') {
+                                expandBox(35);
+                            }  else {
+                                expandBox(-35);
+                            }
+                        });
+                    }
+
+                    // For iphone usage
+                    if (screen.width <= 435) {
+                        breakArray.forEach(el => {
+                            el.style.display = 'none';
+                        });
+                        tableHeight = 560;
+                        settingsBox = 450;
+                        subHeight = 400;
+
+                        // Change box height and size
+                        function expandBox(el) {
+                            tableHeight += el;
+                            settingsBox += el;
+                            subHeight += el;
+                            document.querySelector('table.workout').style.top = tableHeight.toString() + 'px';
+                            document.querySelector('div.workout-settings').style.height = settingsBox.toString() + 'px';
+                            document.querySelector('.workout-settings-submissions').style.top = subHeight.toString() + 'px';
+                        }
+
+                        // Change box size when equipment settings open
+                        equipmentTitle.addEventListener('click', function() {
+                            if (equipmentArray[0].style.display === 'block') {
+                                document.querySelector('.workout-settings-optional').style.top = '570px';
+                                expandBox(200);
+                            }  else {
+                                document.querySelector('.workout-settings-optional').style.top = '360px';
+                                expandBox(-200);
+                            }
+                        });
+
+                        // Change box size when optional settings open
+                        optionalTitle.addEventListener('click', function() {
+                            if (optionalArray[0].style.display === 'block') {
+                                expandBox(50);
+                            } else {
+                                expandBox(-50);
+                            }
+                        });
+                    }
+
+
+                </script>
+                <!--
                 <ul class="workout-settings-optional">
                     <li>Settings: Optional</li><br>
                     <li><select class="login" name="difficulty">
@@ -91,6 +233,7 @@
                         <option value="9">9</option>
                     </select></li>
                 </ul>
+                -->
                 <ul class="workout-settings-submissions">
                     <li><button name="submission" value="submit">Submit</button></li>
                     <li><button name="submission" value="reshuffle">Re-Shuffle</button></li>
@@ -113,6 +256,7 @@
             {% endfor %}
         </table>
     </div>
+    <!--
     <div id="footer">
         <div class="footerlogo">
             <a href="#"><img src="{% static 'handmade/sideways_light_logo.png' %}" class="footerlogo"></a>
@@ -138,5 +282,6 @@
             </ul>
         </div>
     </div>
+-->
 </div>
 </html>
